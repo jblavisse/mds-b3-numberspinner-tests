@@ -1,16 +1,25 @@
 class NumberSpinner {
-  constructor() {
-    this.value = 0;
-    this.step = 1;
+  constructor(value = 0, step = 1, min = null, max = null) {
+    this.value = value;
+    this.step = step;
+    this.min = min;
+    this.max = max;
   }
 
   increment() {
-    this.value += this.step;
+    if (this.max !== null && this.value + this.step >= this.max) {
+      this.value = this.max;
+    } else {
+      this.value += this.step;
+    }
   }
 
   decrement() {
-    this.value = this.value - this.step;
-    // this.value -= this.step;
+    if (this.min !== null && this.value - this.step <= this.min) {
+      this.value = this.min;
+    } else {
+      this.value -= this.step;
+    }
   }
 }
 
